@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>مرجع تصميم صفحة الشنطة</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EDEEF2;--card:#fff;--bd:#D4D0E0;--tx:#1F1A2E;--mu:#666079;--pr:#5F2967;--pl:#F1E8F4;--bl:#3D6A8F;--rd:#A23B5A;--gd:#B7791F;--gr:#2F7F5F;--sub:#F5F4F9;--sh:0 6px 18px rgba(43,35,64,.12)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14101B;--card:#211A2D;--bd:#3A3150;--tx:#F4F0FA;--mu:#9E97B0;--pl:#2D1F35;--sub:#1A1424;--sh:0 6px 20px rgba(0,0,0,.45)}}
+:root[data-theme="dark"]{--bg:#14101B;--card:#211A2D;--bd:#3A3150;--tx:#F4F0FA;--mu:#9E97B0;--pl:#2D1F35;--sub:#1A1424;--sh:0 6px 20px rgba(0,0,0,.45)}
+*{box-sizing:border-box;margin:0;font-family:'Cairo',system-ui,sans-serif}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--tx);min-height:100vh}
+.wrap{max-width:430px;margin:0 auto;padding:10px 14px 40px}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:4px 0 8px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5}
+.tabs button{flex:1;min-width:58px;border:1.5px solid var(--bd);background:var(--card);color:var(--mu);border-radius:14px;padding:6px 4px;font-weight:800;font-size:13px;cursor:pointer}
+.tabs button.on{background:var(--pr);color:#fff;border-color:var(--pr)}
+.note{font-size:12px;color:var(--mu);margin:2px 2px 12px;line-height:1.7}
+.note b{color:var(--pr);font-size:14px}
+.card{background:var(--card);border:1.5px solid var(--bd);border-radius:22px;box-shadow:var(--sh)}
+.top{display:flex;align-items:center;justify-content:space-between;padding:12px;margin-bottom:12px}
+.top h2{font-size:16px;font-weight:800;color:var(--pr);flex:1;margin-inline:10px}
+.sq{width:36px;height:36px;border-radius:12px;background:var(--pl);display:grid;place-items:center}
+.btn{background:var(--pr);color:#fff;border:0;border-radius:999px;padding:8px 16px;font-weight:800;font-size:14px}
+.ic{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:17px;background:var(--pl)}
+.g{display:grid;gap:10px;margin-bottom:12px}
+.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:1fr 1fr}
+.st{padding:12px 10px}
+.st .l{font-size:11px;font-weight:700;color:var(--mu);margin-top:8px}
+.st .n{font-size:24px;font-weight:900;line-height:1.2}
+.st .u{font-size:10px;color:var(--mu);font-weight:700}
+.hero{background:var(--pr);border-color:#4A1E52;color:#fff;box-shadow:0 8px 24px rgba(95,41,103,.32)}
+.hero .l,.hero .u{color:#E5CFEA}.hero .ic{background:rgba(255,255,255,.18)}
+.big{padding:16px}.big .n{font-size:44px}.big .l{font-size:13px;margin-top:0}
+.row{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--mu);border-top:1px solid var(--bd);padding-top:7px;margin-top:8px}
+.bar{height:5px;border-radius:9px;background:var(--bd);margin-top:10px;overflow:hidden}.bar i{display:block;height:100%;border-radius:9px}
+.grad{background:linear-gradient(135deg,#6B2D7A,#5F2967);color:#fff;border:0}
+/* accordions */
+.acc{margin-bottom:12px;overflow:hidden}
+.acc .h{display:flex;align-items:center;gap:10px;padding:11px 14px;cursor:pointer;font-weight:800;font-size:14px}
+.acc .h .t{flex:1}.acc .h .s{font-size:13px;font-weight:800;color:var(--pr)}
+.acc .h .ch{transition:transform .2s;color:var(--mu);font-size:12px}
+.acc.open .ch{transform:rotate(180deg)}
+.acc .b{display:none;padding:4px 14px 14px;border-top:1px solid var(--bd)}.acc.open .b{display:block}
+.a2{box-shadow:inset -5px 0 0 var(--pr),var(--sh)}
+.a3{border-radius:999px}.a3.open{border-radius:22px}.a3 .h{padding:8px 10px}
+.a4 .h{background:var(--pl);color:var(--pr)}
+.a5 .h{background:linear-gradient(135deg,#6B2D7A,#5F2967);color:#fff}.a5 .h .s,.a5 .h .ch{color:#E5CFEA}
+.src{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.src div{background:var(--sub);border:1.5px solid var(--bd);border-radius:16px;padding:9px;font-size:12px;font-weight:700}
+.src small{display:block;color:var(--mu);font-weight:400}
+.pill{background:var(--card);border:1.5px solid var(--bd);border-radius:999px;text-align:center;padding:5px;margin-top:6px;font-weight:800;font-size:15px}
+.add{border:1.5px dashed var(--bd);border-radius:14px;text-align:center;padding:10px;margin-top:8px;font-weight:800;color:var(--pr);font-size:13px}
+.ex{padding:14px;margin-bottom:12px}
+.ex h3{display:flex;justify-content:space-between;font-size:14px;font-weight:800;padding-bottom:8px;border-bottom:1px solid var(--bd)}
+.ex h3 span{color:var(--rd)}
+.it{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--bd);font-size:13px;font-weight:700}
+.it:last-child{border:0}.it small{display:block;color:var(--mu);font-weight:400}.tag{background:var(--pl);border-radius:999px;padding:2px 10px;font-size:11px;margin-inline-start:6px}
+.rc{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;font-size:12px;font-weight:700}
+.rc div{background:var(--sub);border:1.5px solid var(--bd);border-radius:16px;padding:9px}
+.ok{grid-column:1/-1;text-align:center;color:var(--gr)}
+.d1{--rad:16px;--hp:8px 11px;--gp:8px;--ic:28px;--ip:6px;--bf:12px}
+.d2{--rad:14px;--hp:6px 10px;--gp:6px;--ic:24px;--ip:5px;--bf:11px}
+.d3{--rad:12px;--hp:5px 9px;--gp:5px;--ic:22px;--ip:4px;--bf:11px}
+.dd .card{border-radius:var(--rad)}
+.dd .top{padding:var(--hp);margin-bottom:var(--gp)}.dd .top h2{font-size:calc(var(--bf) + 2px);margin-inline:8px}
+.dd .sq{width:var(--ic);height:var(--ic);border-radius:9px;font-size:12px}.dd .btn{padding:4px 12px;font-size:var(--bf)}
+.dd .acc,.dd .ex,.dd .g{margin-bottom:var(--gp)}
+.dd .acc .h{padding:var(--hp);font-size:var(--bf);gap:8px}.dd .acc .h .s{font-size:var(--bf)}.dd .acc .b{padding:2px 10px 10px}
+.dd .acc.a3{border-radius:999px}.dd .acc.a3.open{border-radius:var(--rad)}
+.dd .ic{width:var(--ic);height:var(--ic);font-size:calc(var(--ic) * .5)}
+.dd .ex{padding:var(--hp)}.dd .ex h3{font-size:var(--bf);padding-bottom:4px}.dd .it{padding:var(--ip) 0;font-size:var(--bf)}
+.tabs,.note{display:none}
+</style>
+</head>
+<!-- مرجع بصري: صفحة الشنطة النهائية (الاقتراح أ، كلاس dd d1) والباقي مخفي -->
+<body>
+<div class="wrap">
+  <div class="tabs" id="tabs"></div>
+  <div class="note" id="note"></div>
+  <div id="mock"></div>
+</div>
+<script>
+const f=n=>n.toLocaleString('en-US');
+const D={bag:1100,exp:400,start:1500};
+const OLD=[
+ {n:'١',name:'كروت الرئيسية في صف',d:'الكروت الثلاثة جنب بعض بنفس شكل كروت الرئيسية: أيقونة دايرة وأرقام ملونة. القوائم كروت رفيعة بيضاء.',s:1,a:1},
+ {n:'٢',name:'كارت كبير + كارتين',d:'رصيد الشنطة كارت بنفسجي عريض زي رأس المال في الرئيسية، وتحته المصاريف وبداية الرحلة. القوائم بشريط بنفسجي جانبي.',s:2,a:2},
+ {n:'٣',name:'ستايل القبض',d:'بانر متدرج + كارتين فيهم شريط تقدم زي صفحة القبض. القوائم على شكل أقراص (pill) تنفتح لكروت.',s:3,a:3},
+ {n:'٤',name:'شريط ملون',d:'ثلاث كروت صغيرة بخط لون علوي لكل كارت. القوائم برأس بنفسجي فاتح.',s:4,a:4},
+ {n:'٥',name:'كارت واحد مدمج',d:'الأرقام الثلاثة في كارت واحد بفواصل (أنظف وأقل مساحة). القوائم برأس بنفسجي متدرج.',s:5,a:5}
+];
+const V=[
+ {n:'٣',name:'الحالي (للمقارنة)',d:'التصميم اللي اخترته بحجمه الحالي، للمقارنة بس.',s:3,a:3,dn:0},
+ {n:'أ',name:'مضغوط',d:'نفس ستايل ٣ بارتفاع أقل: البانر أقصر، والكارتين فيهم الأيقونة والعنوان في سطر واحد، وكل الكروت والقوائم أخف.',s:6,a:3,dn:1},
+ {n:'ب',name:'صف واحد',d:'الكروت الثلاثة في صف واحد وبشريط تقدم رفيع، والقوائم أقراص رفيعة.',s:7,a:3,dn:2},
+ {n:'ج',name:'الأصغر',d:'كارت واحد صغير فيه رصيد الشنطة والمصاريف وبداية الرحلة مع شريط تقدم، وباقي الصفحة بأصغر مقاسات.',s:8,a:3,dn:3}
+];
+const st=(ic,l,n,c,extra='',cls='')=>`<div class="card st ${cls}"><div class="ic">${ic}</div><div class="l">${l}</div><div class="n" style="${c?'color:'+c:''}">${f(n)}</div><div class="u">ج.م</div>${extra}</div>`;
+const stats={
+ 1:()=>`<div class="g g3">${st('👜','رصيد الشنطة',D.bag,'','','hero')}${st('📤','المصاريف',D.exp,'var(--rd)')}${st('🛡️','بداية الرحلة',D.start,'var(--bl)')}</div>`,
+ 2:()=>`<div class="card hero big" style="margin-bottom:10px"><div style="display:flex;align-items:center;gap:10px"><div class="ic">👜</div><b>رصيد الشنطة</b></div><div class="n" style="margin-top:8px"><span class="u" style="font-size:14px">ج.م</span> ${f(D.bag)}</div></div><div class="g g2">${st('📤','المصاريف',D.exp,'var(--rd)','<div class="row"><span>من البداية</span><b>26%</b></div>')}${st('🛡️','بداية الرحلة',D.start,'var(--bl)','<div class="row"><span>مصادر</span><b>2</b></div>')}</div>`,
+ 3:()=>`<div class="card grad big" style="margin-bottom:10px;display:flex;justify-content:space-between;align-items:center"><div><div class="l" style="color:#E5CFEA;font-weight:700">رصيد الشنطة</div><div class="n" style="font-size:40px;font-weight:900">${f(D.bag)} <span class="u" style="color:#E5CFEA;font-size:14px">ج.م</span></div></div><div class="ic" style="border-radius:14px;width:46px;height:46px;font-size:22px;background:rgba(255,255,255,.18)">👜</div></div><div class="g g2">${st('📤','المصاريف',D.exp,'var(--rd)','<div class="bar"><i style="width:27%;background:var(--rd)"></i></div>')}${st('🛡️','بداية الرحلة',D.start,'var(--bl)','<div class="bar"><i style="width:100%;background:var(--bl)"></i></div>')}</div>`,
+ 4:()=>`<div class="g g3">${[['👜','رصيد الشنطة',D.bag,'var(--pr)'],['📤','المصاريف',D.exp,'var(--rd)'],['🛡️','بداية الرحلة',D.start,'var(--bl)']].map(x=>`<div class="card st" style="border-top:5px solid ${x[3]}"><div class="l" style="margin-top:0">${x[1]}</div><div class="n" style="color:${x[3]};margin-top:6px">${f(x[2])}</div><div class="u">ج.م ${x[0]}</div></div>`).join('')}</div>`,
+ 5:()=>`<div class="card" style="display:grid;grid-template-columns:1.2fr 1fr 1fr;margin-bottom:12px;padding:14px 4px">${[['رصيد الشنطة',D.bag,'var(--pr)',28],['المصاريف',D.exp,'var(--rd)',20],['بداية الرحلة',D.start,'var(--bl)',20]].map((x,i)=>`<div style="text-align:center;${i?'border-inline-start:1px solid var(--bd)':''}"><div class="l" style="font-size:11px;font-weight:700;color:var(--mu)">${x[0]}</div><div style="font-size:${x[3]}px;font-weight:900;color:${x[2]}">${f(x[1])}</div><div class="u" style="font-size:10px;color:var(--mu)">ج.م</div></div>`).join('')}</div>`,
+ 6:()=>`<div class="card grad" style="display:flex;justify-content:space-between;align-items:center;padding:9px 14px;margin-bottom:8px"><div><div style="font-size:11px;color:#E5CFEA;font-weight:700">بداية الرحلة</div><div style="font-size:30px;font-weight:900;line-height:1.1">${f(D.start)} <span style="font-size:11px;color:#E5CFEA">ج.م</span></div></div><div class="ic" style="background:rgba(255,255,255,.18);border-radius:12px;width:38px;height:38px;font-size:19px">🛡️</div></div><div class="g g2" style="gap:8px">${mini('📤','المصاريف',D.exp,'var(--rd)',27)}${mini('👜','رصيد الشنطة المتبقي',D.bag,'var(--gr)',73)}</div>`,
+ 7:()=>`<div class="g g3" style="gap:6px">${[['رصيد الشنطة',D.bag,'#fff',100,1],['المصاريف',D.exp,'var(--rd)',27],['بداية الرحلة',D.start,'var(--bl)',100]].map(x=>`<div class="card${x[4]?' grad':''}" style="padding:7px 9px"><div style="font-size:10px;font-weight:700;color:${x[4]?'#E5CFEA':'var(--mu)'}">${x[0]}</div><div style="font-size:19px;font-weight:900;color:${x[2]};line-height:1.25">${f(x[1])}</div><div style="font-size:9px;color:${x[4]?'#E5CFEA':'var(--mu)'}">ج.م</div>${x[4]?'':`<div class="bar" style="height:3px;margin-top:4px"><i style="width:${x[3]}%;background:${x[2]}"></i></div>`}</div>`).join('')}</div>`,
+ 8:()=>`<div class="card grad" style="display:flex;align-items:center;gap:12px;padding:8px 12px;margin-bottom:6px"><div style="flex:1"><div style="font-size:10px;color:#E5CFEA;font-weight:700">👜 رصيد الشنطة</div><div style="font-size:26px;font-weight:900;line-height:1.1">${f(D.bag)} <span style="font-size:10px;color:#E5CFEA">ج.م</span></div></div><div style="flex:1;display:grid;gap:6px">${[['المصاريف',D.exp,27,'#FF9DB4'],['بداية الرحلة',D.start,100,'#9CC6EA']].map(x=>`<div><div style="display:flex;justify-content:space-between;font-size:10px;font-weight:700"><span style="color:#E5CFEA">${x[0]}</span><span>${f(x[1])}</span></div><div class="bar" style="height:3px;margin-top:2px;background:rgba(255,255,255,.25)"><i style="width:${x[2]}%;background:${x[3]}"></i></div></div>`).join('')}</div></div>`
+};
+const mini=(ic,l,n,c,p)=>`<div class="card" style="padding:6px 9px"><div style="display:flex;align-items:center;gap:5px"><div class="ic" style="width:20px;height:20px;font-size:10px">${ic}</div><span style="font-size:10px;font-weight:700;color:var(--mu)">${l}</span></div><div style="font-size:17px;font-weight:900;line-height:1.3;color:${c};margin-top:2px">${f(n)} <span style="font-size:10px;color:var(--mu)">ج.م</span></div><div class="bar" style="margin-top:3px;height:3px"><i style="width:${p}%;background:${c}"></i></div></div>`;
+const acc=(i,a,ic,t,s,body,open)=>`<div class="card acc a${a}${open?' open':''}"><div class="h" onclick="this.parentNode.classList.toggle('open')"><div class="ic">${ic}</div><span class="t">${t}</span><span class="s">${s}</span><span class="ch">▼</span></div><div class="b">${body}</div></div>`;
+const startBody=`<div class="src"><div>رأس المال<small>رأس مال</small><div class="pill">1000</div></div><div>القبض<small>قبض</small><div class="pill">500</div></div></div><div class="add">＋ إضافة مصدر عهدة</div>`;
+const recBody=`<div class="rc"><div>المتبقي المتوقع<div style="font-size:16px;margin-top:4px">1,100 ج.م</div></div><div>النقدية الفعلية المتبقية<div class="pill" style="color:var(--mu)">0.00</div></div><div class="ok">شرط الفرق = 0.00</div></div><div class="add" style="margin-top:10px;color:var(--mu)">خطة رد العهدة النقدية للخزن</div>`;
+const exp=`<div class="card ex"><h3><span>${f(D.exp)} ج.م</span><b>📤 مصاريف الشنطة (2)</b></h3><div class="it"><div>نت<small>١٠:٤١ ص</small></div><div>200 ج.م</div></div><div class="it"><div>ب<small>٨:٠٥ م</small></div><div>200 ج.م</div></div></div>`;
+function show(k){
+ const v=V[k];document.getElementById('mock').className=v.dn?'dd d'+v.dn:'';
+ document.getElementById('note').innerHTML=`<b>الاقتراح ${v.n}: ${v.name}</b><br>${v.d}`;
+ document.querySelectorAll('#tabs button').forEach((b,i)=>b.classList.toggle('on',i==k));
+ document.getElementById('mock').innerHTML=
+ `<div class="card top"><div class="sq">➜</div><h2>🧳 سجل الشنطة</h2><button class="btn">＋ مصروف</button></div>`+
+ stats[v.s]()+
+ acc(0,v.a,'🛡️','بداية الرحلة','1,500 ج.م',startBody,false)+
+ exp+
+ acc(1,v.a,'⚖️','مطابقة النقدية ورد العهدة','فرق 0.00',recBody,false);
+}
+document.getElementById('tabs').innerHTML=V.map((v,i)=>`<button onclick="show(${i})">${v.n} · ${v.name}</button>`).join('');
+show(1);
+</script>
+</body>
+</html>
